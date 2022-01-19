@@ -1,0 +1,22 @@
+function selecao() {
+  
+  var NOMETABELA        = "Controle";
+  var COLUNAPARAMETRO   = 1;
+  var COLUNADESTINO     = 2;
+
+  var tabela = SpreadsheetApp.getActiveSheet();
+  var linhaEditada      = tabela.getActiveCell().getRow();
+  var colunaEditada     = tabela.getActiveCell().getColumn();
+
+    if( tabela.getSheetName() == NOMETABELA && colunaEditada == COLUNAPARAMETRO ){
+    
+    if( tabela.getRange(linhaEditada, colunaEditada).getValue() != ""){
+
+      tabela.getRange(linhaEditada, COLUNADESTINO).setFontColor("#38ff00").setDataValidation(SpreadsheetApp.newDataValidation().requireCheckbox().build());
+
+    }else{
+      tabela.getRange(linhaEditada, COLUNADESTINO).deleteCells(SpreadsheetApp.Dimension.ROWS);
+    }
+    
+  }
+}
